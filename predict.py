@@ -2,21 +2,21 @@
 # https://github.com/replicate/cog/blob/main/docs/python.md
 
 from cog import BasePredictor, Input, Path
-
+import multiskin
 
 class Predictor(BasePredictor):
     def setup(self):
         """Load the model into memory to make running multiple predictions efficient"""
-        # self.model = torch.load("./weights.pth")
+        self.model = multiskin.model.Model(hf_token="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")
 
     def predict(
         self,
-        image: Path = Input(description="Grayscale input image"),
-        scale: float = Input(
-            description="Factor to scale image by", ge=0, le=10, default=1.5
-        ),
+        prompt: str = Input(description="Prompt to infer."),
+        nif: int = Input(description="Number of inference steps."),
+        width: int = Input(description="Width of generated image."),
+        height: int = Input(description="Height of generated image."),
     ) -> Path:
+        infer_config = multiskin.model.InferConfig(prompts=[prompt], num_inference_steps=nif, width=width, height=height)
+        generated_filenames = self.model.infer(infer_config=infer_config)
+        return Path(generated_filenames[0])
         """Run a single prediction on the model"""
-        # processed_input = preprocess(image)
-        # output = self.model(processed_image, scale)
-        # return postprocess(output)

@@ -17,6 +17,12 @@ class Predictor(BasePredictor):
         height: int = Input(description="Height of generated image."),
     ) -> Path:
         infer_config = multiskin.model.InferConfig(prompts=[prompt], num_inference_steps=nif, width=width, height=height)
-        generated_filenames = self.model.infer(infer_config=infer_config)
-        return Path(generated_filenames[0])
+        try:
+            generated_filenames = self.model.infer(infer_config=infer_config)
+            return Path(generated_filenames[0])
+        except:
+            return {
+                "error": True,
+                "message": "Failed."
+            }
         """Run a single prediction on the model"""

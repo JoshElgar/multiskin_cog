@@ -7,16 +7,17 @@ build:
 
   # a list of ubuntu apt packages to install
   # system_packages:
-    # - "libgl1-mesa-glx"
-    # - "libglib2.0-0"
+  # - "libgl1-mesa-glx"
+  # - "libglib2.0-0"
+  # trigger new cog
 
   # python version in the form '3.8' or '3.8.12'
   python_version: "3.9"
 
   # a list of packages in the format <package-name>==<version>
   python_packages:
-      - "multiskin==1.4"
-  
+    - "multiskin==1.4"
+
   # commands run after the environment is setup
   # run:
   #   - "ls /root/.pyenv/versions/3.9.16/lib/python3.9/site-packages/multiskin/clean/"

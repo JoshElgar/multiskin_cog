@@ -7,7 +7,7 @@ import multiskin
 class Predictor(BasePredictor):
     def setup(self):
         """Load the model into memory to make running multiple predictions efficient"""
-        self.model = multiskin.model.Model(hf_token="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")
+        self.model = multiskin.model.Model(hf_token="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")
 
     def predict(
         self,
